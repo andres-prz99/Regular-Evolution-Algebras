@@ -1,2 +1,26 @@
 # Regular-Evolution-Algebras
-SageMath code for computing subalgebras of regular evolution algebras.
+This repository contains a **SageMath** script to compute 2-dimensional subalgebras of regular evolution algebras of dimension 3, implementing the algebraic criteria and algorithms described in the paper:
+
+> **"Regular evolution algebras are closed under subalgebras"**
+> *Author: [Your Name]* > [Link to your paper/arXiv if available]
+
+## Prerequisites
+
+To run this code, you need to have **SageMath** (version 9.0 or higher recommended) installed or use it via an online environment like [CoCalc](https://cocalc.com/).
+
+## Usage
+
+1. Load the function into your SageMath session or notebook.
+2. Define the structure matrix $M$ of your 3D evolution algebra.
+3. Call the function `non_zero_solutions_dim3(M)`.
+
+### Quick Example
+
+```python
+# Define a 3x3 structure matrix for a regular evolution algebra
+M = matrix(QQ, [[1, 0, 2], 
+                [0, 1, -1], 
+                [1, 1, 1]])
+
+# Run the calculator
+non_zero_solutions_dim3(M)
