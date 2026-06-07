@@ -93,7 +93,7 @@ M = \begin{pmatrix}
 \end{pmatrix}
 $$
 
-#### SageMath Script Execution
+### SageMath Script Execution
 
 You can define this matrix and run both algorithms sequentially in your SageMath session:
 
@@ -107,7 +107,7 @@ find_one_dimensional_subalgebras(M)
 # 2. Compute codimension-one subalgebras (Proposition 5)
 find_codimension_one_subalgebras(M)
 ```
-#### Expected Console Output
+### Expected Console Output
 ```text
 ============================================================
 COMPUTING ONE-DIMENSIONAL SUBALGEBRAS FOR DIMENSION N = 3
