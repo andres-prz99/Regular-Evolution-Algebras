@@ -93,6 +93,8 @@ M = \begin{pmatrix}
 \end{pmatrix}
 $$
 
+Note that, in the $3$-dimensional case, the previous functions allow us to compute all the possible proper subalgebras.
+
 ### SageMath Script Execution
 
 You can define this matrix and run both algorithms sequentially in your SageMath session:
