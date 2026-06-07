@@ -83,10 +83,10 @@ According to **Proposition 5**, for each pair of indices $(p, q)$ with $1 \le p 
 ```
 ### 3. Comprehensive Example
 
-To illustrate the usage of both scripts, we consider the $3$-dimensional regular evolution algebra defined by the following structure matrix over the rational field $\mathbb{Q}$:
+To illustrate the usage of both scripts, we consider the $3$-dimensional regular evolution algebra defined by the following structure matrix over &#8450;
 
 $$
-N = \begin{pmatrix} 
+M = \begin{pmatrix} 
 1 & 1/3 & 4/9 \\\\ 
 1/3 & 1 & 0 \\\\ 
 0 & 0 & 1 
@@ -99,13 +99,13 @@ You can define this matrix and run both algorithms sequentially in your SageMath
 
 ```text
 # Define the structure matrix N
-N = matrix([[1, 1/3, 4/9],[1/3, 1, 0],[0, 0, 1]])
+M = matrix([[1, 1/3, 4/9],[1/3, 1, 0],[0, 0, 1]])
 
 # 1. Compute 1-dimensional subalgebras (Lemma 1)
-find_one_dimensional_solutions(N)
+find_one_dimensional_solutions(M)
 
 # 2. Compute codimension-one subalgebras (Proposition 5)
-find_codimension_one_subalgebras(N)
+find_codimension_one_subalgebras(M)
 ```
 #### Expected Console Output
 ```text
