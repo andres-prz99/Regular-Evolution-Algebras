@@ -1,6 +1,6 @@
 # Regular Evolution Algebras
 
-This repository aims to compute one-dimensional and codimension-one subalgebras of a regular evolution algebras over algebraically closed fields, mainly the complex numbers &#8450;. Recall that a (finite-dimensional) evolution algebra is said to be *regular* if its structure matrix is non-singular. In particular, we implemented two different functions which correspond with the algebraic criteria described in my article:
+This repository aims to compute one-dimensional and codimension-one subalgebras of a regular evolution algebra over algebraically closed fields, mainly the complex numbers &#8450;. Recall that a (finite-dimensional) evolution algebra is said to be *regular* if its structure matrix is non-singular. In particular, we implemented two different functions which correspond with the algebraic criteria described in my article:
 > M. Ladra, A. Pérez-Rodríguez. **"Regular evolution algebras are closed under subalgebras"**, *Comptes Rendus. Mathématique*, Vol. 363 (2025), pp. 1461–1465. [https://doi.org/10.5802/crmath.804](https://doi.org/10.5802/crmath.804)
 
 Next, we describe how both functions work, along with the inputs and outputs obtained in each case. Note that each function is implemented in a separate script file within this repository.
