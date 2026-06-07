@@ -5,11 +5,11 @@ This repository aims to compute one-dimensional and codimension-one subalgebras 
 
 Next, we describe how both functions work, along with the inputs and outputs obtained in each case. Note that each function is implemented in a separate script file within this repository.
 
-## 1. Computing one-dimensional subalgebras
+### 1. Computing one-dimensional subalgebras
 
 The function `find_one_dimensional_subalgebras(M)` computes all one-dimensional subalgebras of a regular evolution algebra of arbitrary dimension $n$. According to **Lemma 1** in our paper, finding one-dimensional subalgebras is equivalent to finding the non-zero algebraic solutions of a non-linear polynomial system derived from the structure matrix.
 
-### Mathematical Foundation
+#### Mathematical Foundation
 Given a regular evolution algebra with an $n \times n$ structure matrix $M$, an element $v = \sum_{i=1}^n x_i e_i$ generates a one-dimensional subalgebra if and only if $v^2 =kv$ for some scalar $k\neq0$. As justified in **Lemma 1** of our article, to compute all one-dimensional subalgebras, it is enough to obtain all such $v$ such that $v^2=v$; and these elements correspond exactly to computing all $n$-tuples $(x_1, \dots, x_n)$ which satisfy the quadratic system:
 
 $$
