@@ -7,7 +7,7 @@ Next, we describe how both functions work, along with the inputs and outputs obt
 
 ## 1. Computing one-dimensional subalgebras
 
-The function `find_one_dimensional_solutions(M)` computes all one-dimensional subalgebras of a regular evolution algebra of arbitrary dimension $n$. According to **Lemma 1** in our paper, finding one-dimensional subalgebras is equivalent to finding the non-zero algebraic solutions of a non-linear polynomial system derived from the structure matrix.
+The function `find_one_dimensional_subalgebras(M)` computes all one-dimensional subalgebras of a regular evolution algebra of arbitrary dimension $n$. According to **Lemma 1** in our paper, finding one-dimensional subalgebras is equivalent to finding the non-zero algebraic solutions of a non-linear polynomial system derived from the structure matrix.
 
 ### Mathematical Foundation
 Given a regular evolution algebra with an $n \times n$ structure matrix $M$, an element $v = \sum_{i=1}^n x_i e_i$ generates a one-dimensional subalgebra if and only if $v^2 =kv$ for some scalar $k\neq0$. As justified in **Lemma 1** of our article, to compute all one-dimensional subalgebras, it is enough to obtain all such $v$ such that $v^2=v$; and these elements correspond exactly to computing all $n$-tuples $(x_1, \dots, x_n)$ which satisfy the quadratic system:
@@ -102,7 +102,7 @@ You can define this matrix and run both algorithms sequentially in your SageMath
 M = matrix([[1, 1/3, 4/9],[1/3, 1, 0],[0, 0, 1]])
 
 # 1. Compute 1-dimensional subalgebras (Lemma 1)
-find_one_dimensional_solutions(M)
+find_one_dimensional_subalgebras(M)
 
 # 2. Compute codimension-one subalgebras (Proposition 5)
 find_codimension_one_subalgebras(M)
