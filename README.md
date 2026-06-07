@@ -1,9 +1,7 @@
 # Regular-Evolution-Algebras
 This repository contains a **SageMath** script to compute 2-dimensional subalgebras of regular evolution algebras of dimension 3, implementing the algebraic criteria and algorithms described in the paper:
 
-> **"Regular evolution algebras are closed under subalgebras"**
-> *Authors: Manuel Ladra and Andrés Pérez-Rodríguez*
-> *Published in: Volume 363 (2025), pp. 1461–1465.*
+> Ladra, A. Pérez-Rodríguez. **"Regular evolution algebras are closed under subalgebras"**, *Comptes Rendus. Mathématique*, Vol. 363 (2025), pp. 1461–1465. [https://doi.org/10.5802/crmath.804](https://doi.org/10.5802/crmath.804)
 
 ## Prerequisites
 
