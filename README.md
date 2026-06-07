@@ -44,24 +44,102 @@ $$
   -> Structure: span{ e_1 + (2/3)*e_3 }
 ```
 
-## Prerequisites
+### 2. Computing codimension-one subalgebras
 
-To run this code, you need to have **SageMath** (version 9.0 or higher recommended) installed or use it via an online environment like [CoCalc](https://cocalc.com/).
+The function `find_codimension_one_subalgebras(M)` calculates all codimension-one subalgebras of a regular evolution algebra of arbitrary dimension $n$. Following **Proposition 5** and its corollaries from our paper, the task is reduced to systematically inspecting pairs of indices and evaluating specific matrix ranks and polynomial restrictions.
 
-## Usage
+#### Mathematical Foundation
+Let $A$ be a regular evolution algebra with natural basis $\\{e_1, \dots, e_n\\}$ and structure matrix $M$. A codimension-one subalgebra is spanned by a subset of $n-2$ basis elements, namely $\\{e_i\colon i\neq p,q\\}$, combined with an additional generator $v = \alpha e_p + \beta e_q$. 
 
-1. Load the function into your SageMath session or notebook.
-2. Define the structure matrix $M$ of your 3D evolution algebra.
-3. Call the function `non_zero_solutions_dim3(M)`.
+According to **Proposition 5**, for each pair of indices $(p, q)$ with $1 \le p < q \le n$, we define the submatrix $M_{p,q}$ by removing rows $p$ and $q$ and keeping columns $p$ and $q$. A codimension-one subalgebra associated with $(p, q)$ exists if and only if $\text{rank}(M_{p,q}) \le 1$ and the coefficients satisfy one of the following conditions:
 
-### Quick Example
+* **Case 1: $\text{rank}(M_{p,q}) = 1$**. The elements of any non-zero row of $M_{p,q}$ yield the coordinates $(\alpha, \beta)$. The subalgebra exists if and only if these constants satisfy the polynomial relation (P):
+  $$\alpha^2 \beta a_{pp} + \beta^3 a_{qp} = \alpha^3 a_{pq} + \alpha \beta^2 a_{qq}$$
+* **Case 2: $\text{rank}(M_{p,q}) = 0$**. A continuous family of subalgebras exists, where the generator is of the form $v = e_p + \lambda e_q$, and $\lambda \neq 0$ is a root of the characteristic cubic equation:
+  $$a_{qp} \lambda^3 - a_{qq} \lambda^2 + a_{pp} \lambda - a_{pq} = 0$$.
+  
+  (Note: Boundary cases where $\lambda = 0$ or $v = e_q$ are also checked if $a_{p,q}=0$ or $a_{q,p}=0$).
 
-```python
-# Define a 3x3 structure matrix for a regular evolution algebra
-M = matrix(QQ, [[1, 0, 2], 
-                [0, 1, -1], 
-                [1, 1, 1]])
+#### How it works:
+1. **Regularity Check:** It computes the determinant of $M$ to issue a warning if the algebra is not regular, ensuring the prerequisites of Proposition 5 are met.
+2. **Combinatorial Loop:** It automatically loops through all $\binom{n}{2}$ possible index pairs $(p, q)$ using 0-indexed variables mapped dynamically to 1-indexed notation for clarity.
+3. **Submatrix Analysis:** For each pair, it extracts $M_{p,q}$ using SageMath slicing and evaluates its rank. If $\text{rank}(M_{p,q}) > 1$, the pair is immediately discarded and the reason is printed.
+4. **Equation Verification:** Depending on whether the rank is 1 or 0, it dynamically extracts the row constants or invokes SageMath's `solve` engine to compute the exact roots of the cubic constraint equation.
 
-# Run the calculator
-non_zero_solutions_dim3(M)
+#### Inputs and Outputs:
+* **Input:** `M` (a square, non-singular SageMath matrix representing the structure constants).
+* **Output:** It prints a comprehensive step-by-step diagnostic trace of every index pair check, showing ranks, discarded cases, and full algebraic definitions for successful subalgebras. For instance:
+
+```text
+[Indices p=1, q=2] -> rank(M_1,2) = 1
+  -> No subalgebras for this pair (Condition (3) does not hold).
+
+[Indices p=2, q=3] -> rank(M_2,3) = 0
+  -> SUCCESS: Subalgebras exist of the form span{e_i : i != 2,3} U {v}
+     - Continuous family v = e_2 + lambda*e_3, where lambda satisfies:
+       lambda_val^3 - lambda_val^2 + lambda_val - 1 == 0
+       Solutions found for lambda:
+       [lambda_val == 1, lambda_val == -I, lambda_val == I]
 ```
+### 3. Comprehensive Example
+
+To illustrate the usage of both scripts, we consider the $3$-dimensional regular evolution algebra defined by the following structure matrix over the rational field $\mathbb{Q}$:
+
+$$
+N = \begin{pmatrix} 
+1 & 1/3 & 4/9 \\\\ 
+1/3 & 1 & 0 \\\\ 
+0 & 0 & 1 
+\end{pmatrix}
+$$
+
+#### SageMath Script Execution
+
+You can define this matrix and run both algorithms sequentially in your SageMath session:
+
+```text
+# Define the structure matrix N
+N = matrix([[1, 1/3, 4/9],[1/3, 1, 0],[0, 0, 1]])
+
+# 1. Compute 1-dimensional subalgebras (Lemma 1)
+find_one_dimensional_solutions(N)
+
+# 2. Compute codimension-one subalgebras (Proposition 5)
+find_codimension_one_subalgebras(N)
+```
+#### Expected Console Output
+```text
+============================================================
+COMPUTING ONE-DIMENSIONAL SUBALGEBRAS FOR DIMENSION N = 3
+============================================================
+
+THE ONE-DIMENSIONAL SUBALGEBRAS ARE:
+
+  [Subalgebra 1]
+  -> Raw solution: [x_1 == (3/4), x_2 == (3/4), x_3 == (1/2)]
+  -> Structure: span{ (3/4)*e_1 + (3/4)*e_2 + (1/2)*e_3 }
+
+  [Subalgebra 2]
+  -> Raw solution: [x_1 == 0, x_2 == 0, x_3 == 1]
+  -> Structure: span{ e_3 }
+
+============================================================
+============================================================
+ANALYZING CODIMENSION-ONE SUBALGEBRAS FOR DIMENSION N = 3
+============================================================
+
+[Indices p=1, q=2] -> rank(M_1,2) = 0
+  -> SUCCESS: Subalgebras exist of the form span{e_i : i != 1,2} U {v}
+     - Continuous family v = e_1 + lambda*e_2, where lambda satisfies:
+       1/3*lambda_val^3 - lambda_val^2 + lambda_val - 1/3 == 0
+       Solutions found for lambda: [lambda_val == 1]
+
+[Indices p=1, q=3] -> rank(M_1,3) = 1
+  -> No subalgebras for this pair (Condition (P) does not hold).
+
+[Indices p=2, q=3] -> rank(M_2,3) = 1
+  -> No subalgebras for this pair (Condition (P) does not hold).
+
+============================================================
+```
+
