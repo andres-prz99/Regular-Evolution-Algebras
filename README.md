@@ -1,11 +1,6 @@
 # Regular Evolution Algebras
 
-This repository aims to compute one-dimensional and codimension-one subalgebras of a regular evolution algebras over algebraically closed fields, mainly the complex numbers &#8450; 
-$$
-\mathbb{C}
-$$. 
-
-This repository contains a **SageMath** script to compute 2-dimensional subalgebras of regular evolution algebras of dimension 3, implementing the algebraic criteria and algorithms described in the paper:
+This repository aims to compute one-dimensional and codimension-one subalgebras of a regular evolution algebras over algebraically closed fields, mainly the complex numbers &#8450;. Recall that a (finite-dimensional) evolution algebra is said to be *regular* if its structure matrix is non-singular. In particular, we implemented two different functions which correspond with the algebraic criteria described in the article:
 
 > Ladra, A. Pérez-Rodríguez. **"Regular evolution algebras are closed under subalgebras"**, *Comptes Rendus. Mathématique*, Vol. 363 (2025), pp. 1461–1465. [https://doi.org/10.5802/crmath.804](https://doi.org/10.5802/crmath.804)
 
